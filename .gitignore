@@ -1,2 +1,5 @@
 # Temporary files
 /temp
+
+# VS Code files
+.vscode/settings.json
