@@ -6,8 +6,7 @@
 
 void APP_Init(void)
 {
-    /* Application initialization */
-    BSP_LED_Init(LED_GREEN);
+    /* No initialization needed */
 }
 
 void APP_Run(void)
