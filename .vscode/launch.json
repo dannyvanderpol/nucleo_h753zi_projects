@@ -29,6 +29,10 @@
             "cwd": "${workspaceFolder}",
             "preBuild": "${command:st-stm32-ide-debug-launch.build}",
             "runEntry": "main",
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": "4"
+            },
             "imagesAndSymbols": [
                 {
                     "imageFileName": "${workspaceFolder}/led_ws2812_controller/build/Debug/led_ws2812_controller.elf"
