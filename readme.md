@@ -78,24 +78,19 @@ Include the `app.h` in the `main.c` (the path is relative to the `Src` folder):
 /* USER CODE END Includes */
 ```
 
-Add the call to the initalization code in the `main.c`:
+Add the call to the initalization code and run code in the `main.c`:
 
 ```c
-/* USER CODE BEGIN 2 */
+/* USER CODE BEGIN WHILE */
 APP_Init();
-/* USER CODE END 2 */
-```
-
-Add the call to the run code in the `main.c`:
-
-```c
 while (1)
 {
   APP_Run();
   /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */
+/* USER CODE BEGIN 3 */
 }
+/* USER CODE END 3 */
 ```
 
 Add the `app.c` file to the `CMakeLists.txt`:
