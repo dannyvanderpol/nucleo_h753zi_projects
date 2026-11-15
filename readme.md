@@ -21,6 +21,8 @@ https://www.st.com/en/evaluation-tools/nucleo-h753zi.html
 
 [Bill of Materials](resources/MB1364-H753ZI-E01_BOM.xlsx)
 
+[board pinout](resources/board_pinout_cn7_cn8_cn9_cn10.md)
+
 More resources available in the resources folder.
 
 
