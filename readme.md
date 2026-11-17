@@ -2,7 +2,7 @@
 
 Projects for the STM32 development board NUCLEO-H753ZI.
 
-This board features the STM32H7532ZI processor.
+This board features the STM32H753ZI processor.
 
 ## Links
 
