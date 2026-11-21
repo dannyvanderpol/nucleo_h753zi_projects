@@ -9,6 +9,7 @@ Pin PA0 : Data output   (CN10, pin 29, output)
 #include <stdio.h>
 
 #include "app.h"
+#include "uart_it.h"
 #include "leds.h"
 
 #include "stm32h7xx_hal.h"
@@ -46,10 +47,14 @@ void APP_Init(void)
     DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
 
     UpdateLeds();
+
+    UART_IT_Init();
+
+    printf("UART ready\r\n");
 }
 
 
 void APP_Run(void)
 {
-
+    HAL_Delay(1000);
 }

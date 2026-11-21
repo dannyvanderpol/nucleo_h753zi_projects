@@ -47,6 +47,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     App/app.c
     App/leds.c
+    App/uart_it.c
 )
 
 # Add include paths
