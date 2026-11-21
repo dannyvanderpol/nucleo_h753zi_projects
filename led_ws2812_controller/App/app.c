@@ -12,7 +12,23 @@ Pin PA0 : Data output   (CN10, pin 29, output)
 #include "stm32h7xx_nucleo.h"
 
 
+#define NUM_LEDS    75
+
+
+void UpdateLeds(void);
 void Pulse(uint32_t level);
+
+
+// Struct for the LEDs
+typedef struct
+{
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+} Led_t;
+
+// LED buffer default to off
+Led_t LedBuffer[NUM_LEDS] = {0};
 
 
 void APP_Init(void)
@@ -44,65 +60,53 @@ void APP_Init(void)
     CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
     DWT->CYCCNT = 0;
     DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+
+    UpdateLeds();
 }
 
 void APP_Run(void)
 {
-    for (uint8_t i = 0; i < 75; i++)
+    for (int i = 0; i < NUM_LEDS; i++)
     {
-        // Trigger high
-        GPIOB->BSRR = GPIO_BSRR_BS10;
-
-        // Send GRB
-        for (uint8_t j = 0; j < 75; j++)
+        for (int j = 0; j < NUM_LEDS; j++)
         {
-            // Send green if LED must be on
             if (i == j)
             {
-                Pulse(0);
-                Pulse(0);
-                Pulse(0);
-                Pulse(1);
-                Pulse(1);
-                Pulse(1);
-                Pulse(1);
-                Pulse(1);
+                LedBuffer[j].green = 20;
+
             }
             else
             {
-                Pulse(0);
-                Pulse(0);
-                Pulse(0);
-                Pulse(0);
-                Pulse(0);
-                Pulse(0);
-                Pulse(0);
-                Pulse(0);
+                LedBuffer[j].green = 0;
             }
-            // Red and blue off
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
-            Pulse(0);
         }
-
+        // Trigger high
+        GPIOB->BSRR = GPIO_BSRR_BS10;
+        UpdateLeds();
         // Trigger low
         GPIOB->BSRR = GPIO_BSRR_BR10;
+        HAL_Delay(100);
+    }
+}
 
-        HAL_Delay(50);
+
+void UpdateLeds(void)
+{
+    for (int i = 0; i < NUM_LEDS; i++)
+    {
+        // Send data: GRB
+        for (int bit = 7; bit >= 0; bit--)
+        {
+            Pulse((LedBuffer[i].green >> bit) & 0x01);
+        }
+        for (int bit = 7; bit >= 0; bit--)
+        {
+            Pulse((LedBuffer[i].red >> bit) & 0x01);
+        }
+        for (int bit = 7; bit >= 0; bit--)
+        {
+            Pulse((LedBuffer[i].blue >> bit) & 0x01);
+        }
     }
 }
 
