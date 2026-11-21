@@ -29,6 +29,7 @@ void LEDS_Update(void)
     }
 }
 
+
 void LEDS_Pulse(uint32_t level)
 {
     // Level = 1/0 (high/low sequence)
