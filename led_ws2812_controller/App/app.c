@@ -49,12 +49,13 @@ void APP_Init(void)
     LEDS_Update();
 
     UART_IT_Init();
-
-    printf("UART ready\r\n");
 }
 
 
 void APP_Run(void)
 {
-    HAL_Delay(1000);
+    if (UART_IT_CommandReceived())
+    {
+        printf("%s\n", UART_IT_GetCommand());
+    }
 }
