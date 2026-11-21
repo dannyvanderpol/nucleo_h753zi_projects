@@ -46,3 +46,31 @@ void Pulse(uint32_t level)
     start = DWT->CYCCNT;
     while ((DWT->CYCCNT - start) < 270) {}
 }
+
+
+/*
+
+Old code for walking light.
+
+    for (int i = 0; i < NUM_LEDS; i++)
+    {
+        for (int j = 0; j < NUM_LEDS; j++)
+        {
+            if (i == j)
+            {
+                LedBuffer[j].green = 20;
+            }
+            else
+            {
+                LedBuffer[j].green = 0;
+            }
+        }
+        // Trigger high
+        GPIOB->BSRR = GPIO_BSRR_BS10;
+        UpdateLeds();
+        // Trigger low
+        GPIOB->BSRR = GPIO_BSRR_BR10;
+        HAL_Delay(100);
+    }
+
+*/

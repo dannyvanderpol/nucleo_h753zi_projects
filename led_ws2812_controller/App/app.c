@@ -51,24 +51,5 @@ void APP_Init(void)
 
 void APP_Run(void)
 {
-    for (int i = 0; i < NUM_LEDS; i++)
-    {
-        for (int j = 0; j < NUM_LEDS; j++)
-        {
-            if (i == j)
-            {
-                LedBuffer[j].green = 20;
-            }
-            else
-            {
-                LedBuffer[j].green = 0;
-            }
-        }
-        // Trigger high
-        GPIOB->BSRR = GPIO_BSRR_BS10;
-        UpdateLeds();
-        // Trigger low
-        GPIOB->BSRR = GPIO_BSRR_BR10;
-        HAL_Delay(100);
-    }
+
 }
