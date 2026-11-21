@@ -1,3 +1,5 @@
+/* LEDs header file */
+
 #ifndef LEDS_H
 #define LEDS_H
 
@@ -6,7 +8,7 @@
 
 #define NUM_LEDS    75
 
-void UpdateLeds(void);
+void LEDS_Update(void);
 
 // Struct for the LEDs
 typedef struct
@@ -14,9 +16,9 @@ typedef struct
     uint8_t red;
     uint8_t green;
     uint8_t blue;
-} Led_t;
+} LEDS_t;
 
 // LED buffer default to off
-extern Led_t LedBuffer[NUM_LEDS];
+extern LEDS_t LEDS_Buffer[NUM_LEDS];
 
 #endif /* LEDS_H */

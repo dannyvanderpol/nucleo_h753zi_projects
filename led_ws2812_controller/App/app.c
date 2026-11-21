@@ -46,7 +46,7 @@ void APP_Init(void)
     DWT->CYCCNT = 0;
     DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
 
-    UpdateLeds();
+    LEDS_Update();
 
     UART_IT_Init();
 

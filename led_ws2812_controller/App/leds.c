@@ -1,33 +1,35 @@
+/* Function for updating the LEDs from the buffer. */
+
 #include "leds.h"
 
 
-void Pulse(uint32_t level);
+void LEDS_Pulse(uint32_t level);
 
 
-Led_t LedBuffer[NUM_LEDS] = {0};
+LEDS_t LEDS_Buffer[NUM_LEDS] = {0};
 
 
-void UpdateLeds(void)
+void LEDS_Update(void)
 {
     for (int i = 0; i < NUM_LEDS; i++)
     {
         // Send data: GRB
         for (int bit = 7; bit >= 0; bit--)
         {
-            Pulse((LedBuffer[i].green >> bit) & 0x01);
+            LEDS_Pulse((LEDS_Buffer[i].green >> bit) & 0x01);
         }
         for (int bit = 7; bit >= 0; bit--)
         {
-            Pulse((LedBuffer[i].red >> bit) & 0x01);
+            LEDS_Pulse((LEDS_Buffer[i].red >> bit) & 0x01);
         }
         for (int bit = 7; bit >= 0; bit--)
         {
-            Pulse((LedBuffer[i].blue >> bit) & 0x01);
+            LEDS_Pulse((LEDS_Buffer[i].blue >> bit) & 0x01);
         }
     }
 }
 
-void Pulse(uint32_t level)
+void LEDS_Pulse(uint32_t level)
 {
     // Level = 1/0 (high/low sequence)
     // Send 1: high time: 580ns to 1us
